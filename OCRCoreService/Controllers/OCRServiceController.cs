@@ -2,7 +2,7 @@
 using OCRCoreService.Services;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
-using PaddleOCRSharp;
+using PaddleOCRCore;
 using System.Text.RegularExpressions;
 
 namespace OCRCoreService.Controllers

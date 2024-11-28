@@ -1,5 +1,7 @@
 using Newtonsoft.Json;
-using PaddleOCRSharp;
+using PaddleOCRCore;
+using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;

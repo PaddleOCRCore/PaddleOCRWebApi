@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OCRCoreService\OCRCoreService.csproj" />
+    <ProjectReference Include="..\PaddleOCRCore\PaddleOCRCore.csproj" />
   </ItemGroup>
 
 </Project>

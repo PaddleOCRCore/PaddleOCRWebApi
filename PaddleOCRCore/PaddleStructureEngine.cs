@@ -181,7 +181,7 @@ namespace PaddleOCRCore
             }
             catch (Exception ex)
             {
-                throw new Exception("表格字符串指针处理失败", ex);
+                throw new Exception("表格识别失败", ex);
             }
             finally
             {

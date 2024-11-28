@@ -33,7 +33,7 @@ namespace PaddleOCRCore
         internal static extern int FreeEngine();
 
         [DllImport(dllName, CallingConvention = CallingConvention.StdCall, SetLastError = true)]
-        internal static extern bool libModifyParameter(ModifyParameter parameter);
+        internal static extern bool libModifyParameter(AsyncParameter parameter);
   
         #endregion
 
@@ -204,105 +204,12 @@ namespace PaddleOCRCore
 
         #endregion
 
-        #region 表格识别
-
-
-
-        /// <summary>
-        ///结构化文本识别
-        /// </summary>
-        /// <param name="image">图像</param>
-        /// <returns>表格识别结果</returns>
-        [Obsolete]
-        public OCRStructureResult DetectStructure(Image image)
-        {
-
-            if (image == null) throw new ArgumentNullException("image");
-            var imagebyte = ImageToBytes(image);
-            OCRResult result = DetectText(imagebyte);
-            List<TextBlock> blocks = result.TextBlocks;
-            if (blocks == null || blocks.Count == 0) return new OCRStructureResult();
-            var listys = getzeroindexs(blocks.OrderBy(x => x.BoxPoints[0].Y).Select(x => x.BoxPoints[0].Y).ToArray(), 10);
-            var listxs = getzeroindexs(blocks.OrderBy(x => x.BoxPoints[0].X).Select(x => x.BoxPoints[0].X).ToArray(), 10);
-
-            int rowcount = listys.Count;
-            int colcount = listxs.Count;
-            OCRStructureResult structureResult = new OCRStructureResult();
-            structureResult.TextBlocks = blocks;
-            structureResult.RowCount = rowcount;
-            structureResult.ColCount = colcount;
-            structureResult.Cells = new List<StructureCells>();
-            for (int i = 0; i < rowcount; i++)
-            {
-                int y_min = blocks.OrderBy(x => x.BoxPoints[0].Y).OrderBy(x => x.BoxPoints[0].Y).ToList()[listys[i]].BoxPoints[0].Y;
-                int y_max = 99999;
-                if (i < rowcount - 1)
-                {
-                    y_max = blocks.OrderBy(x => x.BoxPoints[0].Y).ToList()[listys[i + 1]].BoxPoints[0].Y;
-                }
-
-                for (int j = 0; j < colcount; j++)
-                {
-                    int x_min = blocks.OrderBy(x => x.BoxPoints[0].X).ToList()[listxs[j]].BoxPoints[0].X;
-                    int x_max = 99999;
-
-                    if (j < colcount - 1)
-                    {
-                        x_max = blocks.OrderBy(x => x.BoxPoints[0].X).ToList()[listxs[j + 1]].BoxPoints[0].X;
-                    }
-
-                    var textBlocks = blocks.Where(x => x.BoxPoints[0].X < x_max && x.BoxPoints[0].X >= x_min && x.BoxPoints[0].Y < y_max && x.BoxPoints[0].Y >= y_min).OrderBy(u => u.BoxPoints[0].X);
-                    var texts = textBlocks.Select(x => x.Text).ToArray();
-
-                    StructureCells cell = new StructureCells();
-                    cell.Row = i;
-                    cell.Col = j;
-
-#if NET35
-                    cell.Text = string.Join("", texts);
-#else
-                    cell.Text = string.Join<string>("", texts);
-#endif
-
-
-                    cell.TextBlocks = textBlocks.ToList();
-                    structureResult.Cells.Add(cell);
-                }
-            }
-            return structureResult;
-        }
-
-        /// <summary>
-        /// 计算表格分割
-        /// </summary>
-        /// <param name="pixellist"></param>
-        /// <param name="thresholdtozero"></param>
-        /// <returns></returns>
-        private List<int> getzeroindexs(int[] pixellist, int thresholdtozero = 10)
-        {
-            List<int> zerolist = new List<int>();
-            zerolist.Add(0);
-            for (int i = 0; i < pixellist.Length; i++)
-            {
-                if ((i < pixellist.Length - 1)
-                    && (Math.Abs(pixellist[i + 1] - pixellist[i])) > thresholdtozero)
-                {
-                    //突增点
-                    zerolist.Add(i + 1);
-                }
-            }
-            return zerolist;
-        }
-
-
-        #endregion
-
         /// <summary>
         /// 在初始化后动态修改参数
         /// </summary>
         /// <param name="parameter">可修改参数对象</param>
         /// <returns>是否成功，在初始化前调用会导致失败</returns>
-        public bool ModifyParameter(ModifyParameter parameter)
+        public bool DynamicParameter(AsyncParameter parameter)
         {
             return libModifyParameter(parameter);
         }

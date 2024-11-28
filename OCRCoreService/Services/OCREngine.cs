@@ -1,4 +1,4 @@
-﻿using PaddleOCRSharp;
+﻿using PaddleOCRCore;
 
 namespace OCRCoreService.Services
 {
@@ -37,7 +37,7 @@ namespace OCRCoreService.Services
 
             //英文和数字模型V3
             //OCRModelConfig config = new OCRModelConfig();
-            //string root = PaddleOCRSharp.EngineBase.GetRootDirectory();
+            //string root = PaddleOCRCore.EngineBase.GetRootDirectory();
             //string modelPathroot = root + @"\en_v3";
             //config.det_infer = modelPathroot + @"\en_PP-OCRv3_det_infer";
             //config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
@@ -84,7 +84,7 @@ namespace OCRCoreService.Services
 
             //英文和数字模型V3
             //OCRModelConfig config = new OCRModelConfig();
-            //string root = PaddleOCRSharp.EngineBase.GetRootDirectory();
+            //string root = PaddleOCRCore.EngineBase.GetRootDirectory();
             //string modelPathroot = root + @"\en_v3";
             //config.det_infer = modelPathroot + @"\en_PP-OCRv3_det_infer";
             //config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";

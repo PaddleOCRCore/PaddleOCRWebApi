@@ -143,7 +143,7 @@ namespace PaddleOCRCore
     /// OCR可修改参数
     /// </summary>
     [StructLayout(LayoutKind.Sequential,Pack =1)]
-    public class ModifyParameter
+    public class AsyncParameter
     {
         /// <summary>
         ///动态修改是否检测。在OCRParameter.det=true时，m_det可动态关闭参数det

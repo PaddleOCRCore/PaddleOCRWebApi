@@ -1,4 +1,4 @@
-﻿using PaddleOCRSharp;
+﻿using PaddleOCRCore;
 
 namespace WinFormsApp.Services
 {
@@ -19,7 +19,7 @@ namespace WinFormsApp.Services
 
             //服务器中英文模型
             //OCRModelConfig config = new OCRModelConfig();
-            //string root = PaddleOCRSharp.EngineBase.GetRootDirectory();
+            //string root = PaddleOCRCore.EngineBase.GetRootDirectory();
             //string modelPathroot = root + @"\inference";
             //config.det_infer = modelPathroot + @"\ch_PP-OCRv4_det_server_infer";
             //config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
@@ -28,7 +28,7 @@ namespace WinFormsApp.Services
 
             //测试中英文模型
             OCRModelConfig config = new OCRModelConfig();
-            string root = PaddleOCRSharp.EngineBase.GetRootDirectory();
+            string root = PaddleOCRCore.EngineBase.GetRootDirectory();
             string modelPathroot = root + @"\inference";
             config.det_infer = modelPathroot + @"\ch_PP-OCRv4_det_infer";
             config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
@@ -37,7 +37,7 @@ namespace WinFormsApp.Services
 
             //英文和数字模型V3
             //OCRModelConfig config = new OCRModelConfig();
-            //string root = PaddleOCRSharp.EngineBase.GetRootDirectory();
+            //string root = PaddleOCRCore.EngineBase.GetRootDirectory();
             //string modelPathroot = root + @"\en_v3";
             //config.det_infer = modelPathroot + @"\en_PP-OCRv3_det_infer";
             //config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
@@ -84,7 +84,7 @@ namespace WinFormsApp.Services
 
             //英文和数字模型V3
             //OCRModelConfig config = new OCRModelConfig();
-            //string root = PaddleOCRSharp.EngineBase.GetRootDirectory();
+            //string root = PaddleOCRCore.EngineBase.GetRootDirectory();
             //string modelPathroot = root + @"\en_v3";
             //config.det_infer = modelPathroot + @"\en_PP-OCRv3_det_infer";
             //config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";

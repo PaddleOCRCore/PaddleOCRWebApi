@@ -1,4 +1,4 @@
-﻿using PaddleOCRSharp;
+﻿using PaddleOCRCore;
 
 namespace WinFormsApp.Services
 {
