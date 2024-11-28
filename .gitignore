@@ -1,0 +1,18 @@
+################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/.vs
+mkldnn.dll
+mklml.dll
+opencv_world470.dll
+opencv_world470d.dll
+/OCRCoreService/obj/Debug
+/OCRCoreService/obj/Release
+/OCRCoreService/obj
+/PaddleOCRCore/obj/Debug
+/PaddleOCRCore/obj/Release
+/PaddleOCRCore/obj
+/WinFormsApp/obj/Debug
+/WinFormsApp/obj/Release
+/WinFormsApp/obj

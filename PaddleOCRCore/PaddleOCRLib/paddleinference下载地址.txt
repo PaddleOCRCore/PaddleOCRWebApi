@@ -1,0 +1,5 @@
+https://www.paddlepaddle.org.cn/inference/master/guides/install/download_lib.html#windows
+
+
+本Demo基于以下paddle_inference3.0版本
+https://paddle-inference-lib.bj.bcebos.com/3.0.0-beta2/cxx_c/Windows/GPU/x86-64_cuda12.3_cudnn9.0.0_trt8.6.1.6_mkl_avx_vs2019/paddle_inference.zip

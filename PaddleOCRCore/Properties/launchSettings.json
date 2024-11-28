@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PaddleOCRCore": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
