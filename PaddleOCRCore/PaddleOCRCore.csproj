@@ -51,6 +51,11 @@
       <PackageCopyToOutput>true</PackageCopyToOutput>
       <Pack>true</Pack>
     </None>
+    <None Update="PaddleOCRLib\发布说明.txt">
+      <PackagePath>build\PaddleOCRLib</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+      <Pack>true</Pack>
+    </None>
   </ItemGroup>
 	
 </Project>

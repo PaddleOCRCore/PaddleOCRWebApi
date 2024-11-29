@@ -40,13 +40,17 @@ namespace WinFormsApp
             try
             {
                 string result = "";
-                string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "123.png");
+                string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "1231.jpeg");
                 //message.Append(filePath);
                 textBoxResult.Text = message.ToString();
                 OCRResult ocrResult = ocrEngine.DetectText(filePath);
                 StringBuilder stringBuilder = new StringBuilder();
                 foreach (var item in ocrResult.TextBlocks)
                 {
+                    if (stringBuilder.Length > 0)
+                    {
+                        stringBuilder.Append(Environment.NewLine);
+                    }
                     stringBuilder.Append(item.Text);
                 }
                 result = stringBuilder.ToString();

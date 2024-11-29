@@ -32,7 +32,8 @@ namespace WinFormsApp.Services
             string modelPathroot = root + @"\inference";
             config.det_infer = modelPathroot + @"\ch_PP-OCRv4_det_infer";
             config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
-            config.rec_infer = modelPathroot + @"\ch_PP-OCRv4_rec_infer";
+            //config.rec_infer = modelPathroot + @"\ch_PP-OCRv4_rec_infer";
+            config.rec_infer = modelPathroot + @"\case_handwrite";//手写识别  
             config.keys = modelPathroot + @"\ppocr_keys.txt";
 
             //英文和数字模型V3
@@ -46,7 +47,7 @@ namespace WinFormsApp.Services
             //OCR参数
 
             OCRParameter oCRParameter = new OCRParameter();
-            oCRParameter.use_gpu = true;
+            oCRParameter.use_gpu = false;
             oCRParameter.cpu_math_library_num_threads = 10;//预测并发线程数
             oCRParameter.enable_mkldnn = true;
             oCRParameter.cls = false; //是否执行文字方向分类；默认false
@@ -93,7 +94,7 @@ namespace WinFormsApp.Services
             //OCR参数
 
             StructureParameter oCRParameter = new StructureParameter();
-            oCRParameter.use_gpu = true;
+            oCRParameter.use_gpu = false;
             oCRParameter.cpu_math_library_num_threads = 10;//预测并发线程数
             oCRParameter.visualize = false;
             oCRParameter.enable_mkldnn = true;

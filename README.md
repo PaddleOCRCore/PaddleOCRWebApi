@@ -2,13 +2,19 @@
 基于百度飞桨PaddleOCR的C++代码修改并封装的动态链接库，支持文本识别、文本检测、表格识别等功能。本项目实现了.net8环境下利用CPU或GPU进行身份证正反面的OCR识别的WebApi，部署后可供其它应用程序调用。
 
 ## 运行环境
-Windows 10/11 64bit
+项目运行环境为VS2022+.net8，其它.net版本可自行修改：
 
-.net frameowrk8.0
+1、下载paddle_inference3.0版本，解压后将paddle_inference.dll放到编译的根目录
+
+https://paddle-inference-lib.bj.bcebos.com/3.0.0-beta2/cxx_c/Windows/GPU/x86-64_cuda12.3_cudnn9.0.0_trt8.6.1.6_mkl_avx_vs2019/paddle_inference.zip
+
+2、进QQ群475159576，下载群文件的PaddleOCRLib.zip，解压后放到编译的根目录中
+
+3、核心文件PaddleOCR.dll为C++动态链接库，支持CPU/GPU模式(GPU需接gitee说明安装对应环境)
+
+## GPU版本环境
 
 OpenCV 4.7
-
-GPU版本环境：
 
 Paddle version: 3.0.0-beta1
 

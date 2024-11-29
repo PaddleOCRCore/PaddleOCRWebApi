@@ -67,7 +67,7 @@ namespace PaddleOCRCore
                 string modelPathroot = root + @"\inference";
                 config.det_infer = modelPathroot + @"\ch_PP-OCRv4_det_infer";
                 config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
-                config.rec_infer = modelPathroot + @"\ch_PP-OCRv4_rec_infer";
+                config.rec_infer = modelPathroot + @"\ch_PP-OCRv4_rec_infer";              
                 config.keys = modelPathroot + @"\ppocr_keys.txt";
             }
             if (!Directory.Exists(config.det_infer) && parameter.det) throw new DirectoryNotFoundException(config.det_infer);

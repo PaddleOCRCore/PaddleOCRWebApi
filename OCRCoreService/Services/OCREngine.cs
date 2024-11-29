@@ -46,7 +46,7 @@ namespace OCRCoreService.Services
             //OCR参数
 
             OCRParameter oCRParameter = new OCRParameter();
-            oCRParameter.use_gpu = true;
+            oCRParameter.use_gpu = false;
             oCRParameter.cpu_math_library_num_threads = 10;//预测并发线程数
             oCRParameter.visualize = false;
             oCRParameter.enable_mkldnn = true;
@@ -93,7 +93,7 @@ namespace OCRCoreService.Services
             //OCR参数
 
             StructureParameter oCRParameter = new StructureParameter();
-            oCRParameter.use_gpu = true;
+            oCRParameter.use_gpu = false;
             oCRParameter.cpu_math_library_num_threads = 10;//预测并发线程数
             oCRParameter.visualize = false;
             oCRParameter.enable_mkldnn = true;
