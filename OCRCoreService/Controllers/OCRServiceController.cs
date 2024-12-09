@@ -157,19 +157,26 @@ namespace OCRCoreService.Controllers
                 return (BadResult("识别失败:图片不存在！"));
             }
             OCRResult ocrResult = engine.ocrEngine.DetectTextBase64(request.Base64String);
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (var item in ocrResult.TextBlocks)
+            if (request.ResultType.Equals("text", StringComparison.OrdinalIgnoreCase))
             {
-                if (!string.IsNullOrEmpty(item.Text))
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (var item in ocrResult.TextBlocks)
                 {
-                    if (stringBuilder.Length > 0)
+                    if (!string.IsNullOrEmpty(item.Text))
                     {
-                        stringBuilder.Append(Environment.NewLine);
+                        if (stringBuilder.Length > 0)
+                        {
+                            stringBuilder.Append(Environment.NewLine);
+                        }
+                        stringBuilder.Append(item.Text);
                     }
-                    stringBuilder.Append(item.Text);
                 }
+                result = stringBuilder.ToString();
             }
-            result = stringBuilder.ToString();
+            else
+            {
+                result = ocrResult.JsonText;
+            }
             return OKResult(result);
         }
         #endregion

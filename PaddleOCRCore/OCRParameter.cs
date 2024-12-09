@@ -81,12 +81,12 @@ namespace PaddleOCRCore
 		[field: MarshalAs(UnmanagedType.I1)] 
 		public bool use_dilation { get; set; } = false;
 		/// <summary>
-		/// 1:使用多边形框计算bbox score，0:使用矩形框计算。矩形框计算速度更快，多边形框对弯曲文本区域计算更准确。
+		/// true:使用多边形框计算bbox score，false:使用矩形框计算。矩形框计算速度更快，多边形框对弯曲文本区域计算更准确。
 		/// </summary>
 		[field: MarshalAs(UnmanagedType.I1)]	
 		public bool det_db_score_mode { get; set; } = true;
         /// <summary>
-        /// 是否对结果进行可视化，为true时，预测结果会在当前目录下保存一个ocr_vis.png文件。默认false
+        /// 是否对结果进行可视化，为1时，预测结果会保存在output字段指定的文件夹下和输入图像同名的图像上。默认false
         /// </summary>
 
         [field: MarshalAs(UnmanagedType.I1)] 
@@ -112,7 +112,7 @@ namespace PaddleOCRCore
         #endregion
 
 
-        #region 识别模型设置
+        #region 文字识别模型设置
         /// <summary>
         /// 识别模型batchsize，默认6
         /// </summary>

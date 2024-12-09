@@ -77,5 +77,9 @@ namespace OCRCoreService
         /// front：身份证含照片的一面；back：身份证带国徽的一面。
         /// </summary>
         public string id_card_side { get; set; } = "front";
+        /// <summary>
+        /// 返回类型
+        /// </summary>
+        public string ResultType { get; set; } = "text";
     }
 }

@@ -1,18 +1,18 @@
-## ÏîÄ¿½éÉÜ
-»ùÓÚ°Ù¶È·É½°PaddleOCRµÄC++´úÂëĞŞ¸Ä²¢·â×°µÄ¶¯Ì¬Á´½Ó¿â£¬Ö§³ÖÎÄ±¾Ê¶±ğ¡¢ÎÄ±¾¼ì²â¡¢±í¸ñÊ¶±ğµÈ¹¦ÄÜ¡£±¾ÏîÄ¿ÊµÏÖÁË.net8»·¾³ÏÂÀûÓÃCPU»òGPU½øĞĞÉí·İÖ¤Õı·´ÃæµÄOCRÊ¶±ğµÄWebApi£¬²¿Êğºó¿É¹©ÆäËüÓ¦ÓÃ³ÌĞòµ÷ÓÃ¡£
+## é¡¹ç›®ä»‹ç»
+åŸºäºç™¾åº¦é£æ¡¨PaddleOCRçš„C++ä»£ç ä¿®æ”¹å¹¶å°è£…çš„åŠ¨æ€é“¾æ¥åº“ï¼Œæ”¯æŒæ–‡æœ¬è¯†åˆ«ã€æ–‡æœ¬æ£€æµ‹ã€è¡¨æ ¼è¯†åˆ«ç­‰åŠŸèƒ½ã€‚æœ¬é¡¹ç›®å®ç°äº†.net8ç¯å¢ƒä¸‹åˆ©ç”¨CPUæˆ–GPUè¿›è¡Œèº«ä»½è¯æ­£åé¢çš„OCRè¯†åˆ«çš„WebApiï¼Œéƒ¨ç½²åå¯ä¾›å…¶å®ƒåº”ç”¨ç¨‹åºè°ƒç”¨ã€‚
 
-## ÔËĞĞ»·¾³
-ÏîÄ¿ÔËĞĞ»·¾³ÎªVS2022+.net8£¬ÆäËü.net°æ±¾¿É×ÔĞĞĞŞ¸Ä£º
+## è¿è¡Œç¯å¢ƒ
+é¡¹ç›®è¿è¡Œç¯å¢ƒä¸ºVS2022+.net8ï¼Œå…¶å®ƒ.netç‰ˆæœ¬å¯è‡ªè¡Œä¿®æ”¹ï¼š
 
-1¡¢ÏÂÔØpaddle_inference3.0°æ±¾£¬½âÑ¹ºó½«paddle_inference.dll·Åµ½±àÒëµÄ¸ùÄ¿Â¼
+1ã€ä¸‹è½½paddle_inference3.0ç‰ˆæœ¬ï¼Œè§£å‹åå°†paddle_inference.dllæ”¾åˆ°ç¼–è¯‘çš„æ ¹ç›®å½•
 
 https://paddle-inference-lib.bj.bcebos.com/3.0.0-beta2/cxx_c/Windows/GPU/x86-64_cuda12.3_cudnn9.0.0_trt8.6.1.6_mkl_avx_vs2019/paddle_inference.zip
 
-2¡¢½øQQÈº475159576£¬ÏÂÔØÈºÎÄ¼şµÄPaddleOCRLib.zip£¬½âÑ¹ºó·Åµ½±àÒëµÄ¸ùÄ¿Â¼ÖĞ
+2ã€è¿›QQç¾¤475159576ï¼Œä¸‹è½½ç¾¤æ–‡ä»¶çš„PaddleOCRLib.zipï¼Œè§£å‹åæ”¾åˆ°ç¼–è¯‘çš„æ ¹ç›®å½•ä¸­
 
-3¡¢ºËĞÄÎÄ¼şPaddleOCR.dllÎªC++¶¯Ì¬Á´½Ó¿â£¬Ö§³ÖCPU/GPUÄ£Ê½(GPUĞè½ÓgiteeËµÃ÷°²×°¶ÔÓ¦»·¾³)
+3ã€æ ¸å¿ƒæ–‡ä»¶PaddleOCR.dllä¸ºC++åŠ¨æ€é“¾æ¥åº“ï¼Œæ”¯æŒCPU/GPUæ¨¡å¼(GPUéœ€æ¥giteeè¯´æ˜å®‰è£…å¯¹åº”ç¯å¢ƒ)
 
-## GPU°æ±¾»·¾³
+## GPUç‰ˆæœ¬ç¯å¢ƒ
 
 OpenCV 4.7
 
@@ -28,23 +28,27 @@ WITH_TENSORRT: ON
 
 TensorRT version: v8.6.1.6
 
-cudaÏÂÔØ
+cudaä¸‹è½½
 https://developer.nvidia.com/cuda-11-8-0-download-archive
 
-cudnnÏÂÔØ
+cudnnä¸‹è½½
 https://developer.nvidia.cn/rdp/cudnn-archive
 
-TensorRTÏÂÔØ
+TensorRTä¸‹è½½
 https://developer.nvidia.com/nvidia-tensorrt-download
 
-paddle_inferenceÏÂÔØ
+paddle_inferenceä¸‹è½½
 https://www.paddlepaddle.org.cn/inference/v3.0/guides/install/download_lib.html#windows
 
 https://paddle-inference-lib.bj.bcebos.com/3.0.0-beta2/cxx_c/Windows/GPU/x86-64_cuda12.3_cudnn9.0.0_trt8.6.1.6_mkl_avx_vs2019/paddle_inference.zip
 
-## ¿ª·¢½»Á÷Èº
+OCRè¯†åˆ«å®˜æ–¹æ¨¡å‹åº“ä¸‹è½½
 
-»¶Ó­¼ÓÈëQQÈº½»Á÷
+https://gitee.com/paddlepaddle/PaddleOCR/blob/release/2.7/doc/doc_ch/models_list.md
+
+## å¼€å‘äº¤æµç¾¤
+
+æ¬¢è¿åŠ å…¥QQç¾¤äº¤æµ
 
 <img src="https://gitee.com/corallite/PaddleOCRWebApi/raw/master/PaddleOCRCore/PaddleOCRLib/qq.png" width="382px;" />
 
