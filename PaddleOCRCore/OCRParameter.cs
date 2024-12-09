@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-//说明：OCRParameter类的属性定义顺序不可随便更改，需要与PaddleOCR中的OCRParameter顺序一致
+//说明：OCRParameter类的属性定义顺序不可随便更改，用户向PdddleOCR.dll传入参数
 
 namespace PaddleOCRCore
 {
@@ -11,7 +11,7 @@ namespace PaddleOCRCore
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public class OCRParameter
 	{
-        #region 通用参数
+        #region 通用参数设置
         /// <summary>
         /// 是否使用GPU；默认false
         /// </summary>
@@ -29,7 +29,7 @@ namespace PaddleOCRCore
         public int gpu_mem { get; set; } = 4000;
 
 		/// <summary>
-		/// CPU预测时的线程数，在机器核数充足的情况下，该值越大，预测速度越快；默认10
+		/// CPU预测时的线程数；默认10
 		/// </summary>
 		public int cpu_math_library_num_threads { get; set; } = 10;
 		/// <summary>
@@ -39,7 +39,7 @@ namespace PaddleOCRCore
 		public bool enable_mkldnn { get; set; } =true;
         #endregion
 
-        #region 前向相关
+        #region 文字识别设置
         /// <summary>
         ///是否执行文字检测；默认true 
         /// </summary>
@@ -55,14 +55,14 @@ namespace PaddleOCRCore
         /// </summary>
         [field: MarshalAs(UnmanagedType.I1)] 
 		public bool cls { get; set; } = false;
-		#endregion
+        #endregion
 
-		#region 检测模型相关
+        #region 检测模型设置
 
-		/// <summary>
-		/// 输入图像长宽大于960时，等比例缩放图像，使得图像最长边为960,；默认960
-		/// </summary>
-		public int max_side_len { get; set; } = 960;
+        /// <summary>
+        /// 输入图像长宽大于960时，等比例缩放图像，使得图像最长边为960,；默认960
+        /// </summary>
+        public int max_side_len { get; set; } = 960;
 		/// <summary>
 		/// 用于过滤DB预测的二值化图像，设置为0.-0.3对结果影响不明显；默认0.3
 		/// </summary>
@@ -94,7 +94,7 @@ namespace PaddleOCRCore
 
         #endregion
 
-        #region 方向分类器相关
+        #region 方向分类器设置
 
         /// <summary>
         /// 是否使用方向分类器,默认false
@@ -109,14 +109,14 @@ namespace PaddleOCRCore
 		/// 方向分类器batchsize，默认1
 		/// </summary>
 		public int cls_batch_num { get; set; } = 1;
-		#endregion
+        #endregion
 
 
-		#region 识别模型相关
-		/// <summary>
-		/// 识别模型batchsize，默认6
-		/// </summary>
-		public int rec_batch_num { get; set; } = 6;
+        #region 识别模型设置
+        /// <summary>
+        /// 识别模型batchsize，默认6
+        /// </summary>
+        public int rec_batch_num { get; set; } = 6;
 		/// <summary>
 		/// 识别模型输入图像高度，默认48
 		/// </summary>

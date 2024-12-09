@@ -17,7 +17,7 @@ namespace PaddleOCRCore
         /// </summary>
         public static string PaddleOCRdllPath { get; set; }
 
-        internal const string dllName = "PaddleOCR.dll";
+        internal const string dllName = "PaddleOCR";
         [DllImport("kernel32.dll")]
         private extern static IntPtr LoadLibrary(String path);
 

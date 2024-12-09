@@ -69,7 +69,7 @@ namespace PaddleOCRCore
         /// <summary>
         /// PaddleStructureEngine识别引擎对象初始化
         /// </summary>
-        /// <param name="config">模型配置对象，如果为空则按默认值</param>
+        /// <param name="config">模型对象设置，如果为空则按默认值</param>
         /// <param name="parameterjson">识别参数Json格式，为空均按缺省值</param>
         public PaddleStructureEngine(StructureModelConfig config, string parameterjson) : base()
         {

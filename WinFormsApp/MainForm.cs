@@ -26,7 +26,7 @@ namespace WinFormsApp
                 IOCREngine engine = new OCREngine();
                 ocrEngine = engine.GetOCREngine();
                 structureEngine = engine.GetStructureEngine();
-                message.Append("³õÊ¼»¯³É¹¦£¡\r\n");
+                message.Append("åˆå§‹åŒ–æˆåŠŸï¼\r\n");
                 textBoxResult.Text = message.ToString();
             }
             catch (Exception ex)
@@ -40,98 +40,98 @@ namespace WinFormsApp
             try
             {
                 string result = "";
-                string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "1231.jpeg");
+                string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "123.png");
                 //message.Append(filePath);
                 textBoxResult.Text = message.ToString();
                 OCRResult ocrResult = ocrEngine.DetectText(filePath);
                 StringBuilder stringBuilder = new StringBuilder();
                 foreach (var item in ocrResult.TextBlocks)
                 {
-                    //if (stringBuilder.Length > 0)
-                    //{
-                    //    stringBuilder.Append(Environment.NewLine);
-                    //}
+                    if (stringBuilder.Length > 0)
+                    {
+                        stringBuilder.Append(Environment.NewLine);
+                    }
                     stringBuilder.Append(item.Text);
                 }
                 result = stringBuilder.ToString();
-                string id_card_side = "front";
+                string id_card_side = "front1";
                 if (id_card_side.Equals("front"))
                 {
                     var jsonResult = new
                     {
-                        ĞÕÃû = "",
-                        ĞÔ±ğ = "",
-                        Ãñ×å = "",
-                        ³öÉú = "",
-                        ×¡Ö· = "",
-                        ¹«ÃñÉí·İºÅÂë = "",
+                        å§“å = "",
+                        æ€§åˆ« = "",
+                        æ°‘æ— = "",
+                        å‡ºç”Ÿ = "",
+                        ä½å€ = "",
+                        å…¬æ°‘èº«ä»½å·ç  = "",
                         text = ""
                     };
-                    // ¶¨ÒåÕıÔò±í´ïÊ½
-                    Regex regex = new Regex(@"ĞÕÃû(?<name>[^\s]+)ĞÔ±ğ(?<gender>[ÄĞÅ®])Ãñ×å(?<nation>.+?)³öÉú(?<birth>.+?)×¡Ö·(?<address>.+?)¹«ÃñÉí·İ(?<zheng>.+?)ºÅÂë(?<id>\d{18})");
-                    // Ö´ĞĞÆ¥Åä
+                    // å®šä¹‰æ­£åˆ™è¡¨è¾¾å¼
+                    Regex regex = new Regex(@"å§“å(?<name>[^\s]+)æ€§åˆ«(?<gender>[ç”·å¥³])æ°‘æ—(?<nation>.+?)å‡ºç”Ÿ(?<birth>.+?)ä½å€(?<address>.+?)å…¬æ°‘èº«ä»½(?<zheng>.+?)å·ç (?<id>\d{18})");
+                    // æ‰§è¡ŒåŒ¹é…
                     Match match = regex.Match(result);
                     if (match.Success)
                     {
-                        // ÌáÈ¡ĞÅÏ¢
+                        // æå–ä¿¡æ¯
                         string name = match.Groups["name"].Value;
                         string gender = match.Groups["gender"].Value;
                         string nation = match.Groups["nation"].Value;
                         string birth = match.Groups["birth"].Value;
                         string address = match.Groups["address"].Value;
                         string idNumber = match.Groups["id"].Value;
-                        // ¹¹½¨JSON¶ÔÏó
+                        // æ„å»ºJSONå¯¹è±¡
                         jsonResult = new
                         {
-                            ĞÕÃû = name,
-                            ĞÔ±ğ = gender,
-                            Ãñ×å = nation,
-                            ³öÉú = birth,
-                            ×¡Ö· = address,
-                            ¹«ÃñÉí·İºÅÂë = idNumber,
+                            å§“å = name,
+                            æ€§åˆ« = gender,
+                            æ°‘æ— = nation,
+                            å‡ºç”Ÿ = birth,
+                            ä½å€ = address,
+                            å…¬æ°‘èº«ä»½å·ç  = idNumber,
                             text = result
                         };
                         result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
                     }
                     else
                     {
-                        message.Append("ÕıÔò±í´ïÊ½Æ¥ÅäÊ§°Ü\r\n");
+                        message.Append("æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…å¤±è´¥\r\n");
                     }
                 }
                 else if(id_card_side.Equals("back"))
                 {
                     var jsonResult = new
                     {
-                        Ç©·¢»ú¹Ø = "",
-                        ÓĞĞ§ÆÚÏŞ = "",
+                        ç­¾å‘æœºå…³ = "",
+                        æœ‰æ•ˆæœŸé™ = "",
                         text = ""
                     };
-                    // ¶¨ÒåÕıÔò±í´ïÊ½
-                    Regex regex = new Regex(@"Ç©·¢»ú¹Ø(?<issuingAuthority>.+?)ÓĞĞ§ÆÚÏŞ(?<validityPeriod>.+)$");
+                    // å®šä¹‰æ­£åˆ™è¡¨è¾¾å¼
+                    Regex regex = new Regex(@"ç­¾å‘æœºå…³(?<issuingAuthority>.+?)æœ‰æ•ˆæœŸé™(?<validityPeriod>.+)$");
 
-                    // Ö´ĞĞÆ¥Åä
+                    // æ‰§è¡ŒåŒ¹é…
                     Match match = regex.Match(result);
                     if (match.Success)
                     {
-                        // ÌáÈ¡ĞÅÏ¢
+                        // æå–ä¿¡æ¯
                         string issuingAuthority = match.Groups["issuingAuthority"].Value;
                         string validityPeriod = match.Groups["validityPeriod"].Value;
-                        // ¹¹½¨JSON¶ÔÏó
+                        // æ„å»ºJSONå¯¹è±¡
                         jsonResult = new
                         {
-                            Ç©·¢»ú¹Ø = issuingAuthority,
-                            ÓĞĞ§ÆÚÏŞ = validityPeriod,
+                            ç­¾å‘æœºå…³ = issuingAuthority,
+                            æœ‰æ•ˆæœŸé™ = validityPeriod,
                             text = result
                         };
                         result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
                     }
                     else
                     {
-                        message.Append("ÕıÔò±í´ïÊ½Æ¥ÅäÊ§°Ü\r\n");
+                        message.Append("æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…å¤±è´¥\r\n");
                     }
                 }
                 message.Append(result);
-                //message.Insert(0, $"Ê¶±ğ½á¹û{ocrResult.TextBlocks.Count()}ĞĞ£º\r\n");
+                //message.Insert(0, $"è¯†åˆ«ç»“æœ{ocrResult.TextBlocks.Count()}è¡Œï¼š\r\n");
                 textBoxResult.Text = message.ToString();
             }
             catch (Exception ex)
@@ -159,7 +159,7 @@ namespace WinFormsApp
             string base64 = GetBase64FromImage(filePath);
             textBoxResult.Text = base64;
         }
-        #region Í¼Æ¬Â·¾¶×ªBase64
+        #region å›¾ç‰‡è·¯å¾„è½¬Base64
         public static string GetBase64FromImage(string strPath)
         {
             string strbaser64 = "";
