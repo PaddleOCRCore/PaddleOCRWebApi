@@ -50,12 +50,13 @@
             button1.Name = "button1";
             button1.Size = new Size(120, 53);
             button1.TabIndex = 1;
-            button1.Text = "识别";
+            button1.Text = "OCR识别";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // textBoxResult
             // 
+            textBoxResult.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             textBoxResult.Location = new Point(2, 91);
             textBoxResult.Multiline = true;
             textBoxResult.Name = "textBoxResult";
@@ -65,11 +66,11 @@
             // 
             // button2
             // 
-            button2.Location = new Point(336, 22);
+            button2.Location = new Point(349, 22);
             button2.Name = "button2";
             button2.Size = new Size(120, 53);
             button2.TabIndex = 3;
-            button2.Text = "获取Base64";
+            button2.Text = "获取图片Base64";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 

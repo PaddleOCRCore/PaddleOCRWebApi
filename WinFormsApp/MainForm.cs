@@ -40,99 +40,108 @@ namespace WinFormsApp
             try
             {
                 string result = "";
-                string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "123.png");
-                //message.Append(filePath);
-                textBoxResult.Text = message.ToString();
-                OCRResult ocrResult = ocrEngine.DetectText(filePath);
-                StringBuilder stringBuilder = new StringBuilder();
-                foreach (var item in ocrResult.TextBlocks)
+                message=new StringBuilder();
+                OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
+                OpenFileDialog1.Filter = "所有文件(*.jpg)|*.*|jpg(*.jpg)|*.png|png(*.png)|*.png|bmp(*.bmp)|*.bmp|jpeg(*.jpeg)|*.jpeg";
+                OpenFileDialog1.Multiselect = false;
+                if (DialogResult.OK == OpenFileDialog1.ShowDialog())
                 {
-                    if (stringBuilder.Length > 0)
+                    string filePath = OpenFileDialog1.FileName;
+                    //string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "1231.jpeg");
+                    //message.Append(filePath);
+                    textBoxResult.Text = message.ToString();
+                    OCRResult ocrResult = ocrEngine.DetectText(filePath);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    foreach (var item in ocrResult.TextBlocks)
                     {
-                        stringBuilder.Append(Environment.NewLine);
-                    }
-                    stringBuilder.Append(item.Text);
-                }
-                result = stringBuilder.ToString();
-                string id_card_side = "front1";
-                if (id_card_side.Equals("front"))
-                {
-                    var jsonResult = new
-                    {
-                        姓名 = "",
-                        性别 = "",
-                        民族 = "",
-                        出生 = "",
-                        住址 = "",
-                        公民身份号码 = "",
-                        text = ""
-                    };
-                    // 定义正则表达式
-                    Regex regex = new Regex(@"姓名(?<name>[^\s]+)性别(?<gender>[男女])民族(?<nation>.+?)出生(?<birth>.+?)住址(?<address>.+?)公民身份(?<zheng>.+?)号码(?<id>\d{18})");
-                    // 执行匹配
-                    Match match = regex.Match(result);
-                    if (match.Success)
-                    {
-                        // 提取信息
-                        string name = match.Groups["name"].Value;
-                        string gender = match.Groups["gender"].Value;
-                        string nation = match.Groups["nation"].Value;
-                        string birth = match.Groups["birth"].Value;
-                        string address = match.Groups["address"].Value;
-                        string idNumber = match.Groups["id"].Value;
-                        // 构建JSON对象
-                        jsonResult = new
+                        if (stringBuilder.Length > 0)
                         {
-                            姓名 = name,
-                            性别 = gender,
-                            民族 = nation,
-                            出生 = birth,
-                            住址 = address,
-                            公民身份号码 = idNumber,
-                            text = result
+                            stringBuilder.Append(Environment.NewLine);
+                        }
+                        stringBuilder.Append(item.Text);
+                    }
+                    result = stringBuilder.ToString();
+                    string id_card_side = "front";
+                    if (id_card_side.Equals("front"))
+                    {
+                        var jsonResult = new
+                        {
+                            姓名 = "",
+                            性别 = "",
+                            民族 = "",
+                            出生 = "",
+                            住址 = "",
+                            公民身份号码 = "",
+                            text = ""
                         };
-                        result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
+                        // 定义正则表达式
+                        Regex regex = new Regex(@"姓名(?<name>[^\s]+)性别(?<gender>[男女])民族(?<nation>.+?)出生(?<birth>.+?)住址(?<address>.+?)公民身份(?<zheng>.+?)号码(?<id>\d{18})");
+                        // 执行匹配
+                        Match match = regex.Match(result);
+                        if (match.Success)
+                        {
+                            // 提取信息
+                            string name = match.Groups["name"].Value;
+                            string gender = match.Groups["gender"].Value;
+                            string nation = match.Groups["nation"].Value;
+                            string birth = match.Groups["birth"].Value;
+                            string address = match.Groups["address"].Value;
+                            string idNumber = match.Groups["id"].Value;
+                            // 构建JSON对象
+                            jsonResult = new
+                            {
+                                姓名 = name,
+                                性别 = gender,
+                                民族 = nation,
+                                出生 = birth,
+                                住址 = address,
+                                公民身份号码 = idNumber,
+                                text = result
+                            };
+                            result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
+                        }
+                        else
+                        {
+                            message.Append("正则表达式匹配失败\r\n");
+                        }
                     }
-                    else
+                    else if (id_card_side.Equals("back"))
                     {
-                        message.Append("正则表达式匹配失败\r\n");
-                    }
-                }
-                else if(id_card_side.Equals("back"))
-                {
-                    var jsonResult = new
-                    {
-                        签发机关 = "",
-                        有效期限 = "",
-                        text = ""
-                    };
-                    // 定义正则表达式
-                    Regex regex = new Regex(@"签发机关(?<issuingAuthority>.+?)有效期限(?<validityPeriod>.+)$");
+                        var jsonResult = new
+                        {
+                            签发机关 = "",
+                            有效期限 = "",
+                            text = ""
+                        };
+                        // 定义正则表达式
+                        Regex regex = new Regex(@"签发机关(?<issuingAuthority>.+?)有效期限(?<validityPeriod>.+)$");
 
-                    // 执行匹配
-                    Match match = regex.Match(result);
-                    if (match.Success)
-                    {
-                        // 提取信息
-                        string issuingAuthority = match.Groups["issuingAuthority"].Value;
-                        string validityPeriod = match.Groups["validityPeriod"].Value;
-                        // 构建JSON对象
-                        jsonResult = new
+                        // 执行匹配
+                        Match match = regex.Match(result);
+                        if (match.Success)
                         {
-                            签发机关 = issuingAuthority,
-                            有效期限 = validityPeriod,
-                            text = result
-                        };
-                        result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
+                            // 提取信息
+                            string issuingAuthority = match.Groups["issuingAuthority"].Value;
+                            string validityPeriod = match.Groups["validityPeriod"].Value;
+                            // 构建JSON对象
+                            jsonResult = new
+                            {
+                                签发机关 = issuingAuthority,
+                                有效期限 = validityPeriod,
+                                text = result
+                            };
+                            result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
+                        }
+                        else
+                        {
+                            message.Append("正则表达式匹配失败\r\n");
+                        }
                     }
-                    else
-                    {
-                        message.Append("正则表达式匹配失败\r\n");
-                    }
+                    message.Append(result);
+                    //message.Insert(0, $"识别结果{ocrResult.TextBlocks.Count()}行：\r\n");
+                    textBoxResult.Text = message.ToString();
                 }
-                message.Append(result);
-                //message.Insert(0, $"识别结果{ocrResult.TextBlocks.Count()}行：\r\n");
-                textBoxResult.Text = message.ToString();
+                OpenFileDialog1.Dispose();
             }
             catch (Exception ex)
             {
@@ -155,9 +164,17 @@ namespace WinFormsApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "123.png");
-            string base64 = GetBase64FromImage(filePath);
-            textBoxResult.Text = base64;
+            message = new StringBuilder();
+            OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
+            OpenFileDialog1.Filter = "所有文件(*.jpg)|*.*|jpg(*.jpg)|*.png|png(*.png)|*.png|bmp(*.bmp)|*.bmp|jpeg(*.jpeg)|*.jpeg";
+            OpenFileDialog1.Multiselect = false;
+            if (DialogResult.OK == OpenFileDialog1.ShowDialog())
+            {
+                string filePath = OpenFileDialog1.FileName;
+                string base64 = GetBase64FromImage(filePath);
+                textBoxResult.Text = base64;
+            }
+            OpenFileDialog1.Dispose();
         }
         #region 图片路径转Base64
         public static string GetBase64FromImage(string strPath)
