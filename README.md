@@ -48,7 +48,7 @@ https://gitee.com/paddlepaddle/PaddleOCR/blob/release/2.7/doc/doc_ch/models_list
 
 ## 开发交流群
 
-欢迎加入QQ群交流
+欢迎加入QQ群475159576交流,或者添加QQ：2380243976
 
-<img src="https://gitee.com/corallite/PaddleOCRWebApi/raw/master/PaddleOCRCore/PaddleOCRLib/qq.png" width="382px;" />
+<img src="https://gitee.com/corallite/PaddleOCRWebApi/raw/master/PaddleOCRCore/PaddleOCRRuntime/qq.png" width="382px;" />
 

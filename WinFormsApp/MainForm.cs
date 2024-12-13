@@ -54,10 +54,10 @@ namespace WinFormsApp
                     StringBuilder stringBuilder = new StringBuilder();
                     foreach (var item in ocrResult.TextBlocks)
                     {
-                        if (stringBuilder.Length > 0)
-                        {
-                            stringBuilder.Append(Environment.NewLine);
-                        }
+                        //if (stringBuilder.Length > 0)
+                        //{
+                        //    stringBuilder.Append(Environment.NewLine);
+                        //}
                         stringBuilder.Append(item.Text);
                     }
                     result = stringBuilder.ToString();
