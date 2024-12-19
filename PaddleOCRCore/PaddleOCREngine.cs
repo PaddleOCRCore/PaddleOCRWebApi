@@ -64,11 +64,11 @@ namespace PaddleOCRCore
             {
                 string root = GetRootDirectory().TrimEnd('\\');
                 config = new OCRModelConfig();
-                string modelPathroot = root + @"\inference";
-                config.det_infer = modelPathroot + @"\ch_PP-OCRv4_det_infer";
-                config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
-                config.rec_infer = modelPathroot + @"\ch_PP-OCRv4_rec_infer";              
-                config.keys = modelPathroot + @"\ppocr_keys.txt";
+                string modelPathroot = Path.Combine(root, "inference");
+                config.det_infer = Path.Combine(modelPathroot, "ch_PP-OCRv4_det_infer");
+                config.cls_infer = Path.Combine(modelPathroot, "ch_ppocr_mobile_v2.0_cls_infer");
+                config.rec_infer = Path.Combine(modelPathroot, "ch_PP-OCRv4_rec_infer");
+                config.keys = Path.Combine(modelPathroot, "ppocr_keys.txt");
             }
             if (!Directory.Exists(config.det_infer) && parameter.det) throw new DirectoryNotFoundException(config.det_infer);
             if (!Directory.Exists(config.cls_infer) && parameter.cls) throw new DirectoryNotFoundException(config.cls_infer);
@@ -91,11 +91,11 @@ namespace PaddleOCRCore
             {
                 string root = GetRootDirectory().TrimEnd('\\');
                 config = new OCRModelConfig();
-                string modelPathroot = root + @"\inference";
-                config.det_infer = modelPathroot + @"\ch_PP-OCRv4_det_infer";
-                config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
-                config.rec_infer = modelPathroot + @"\ch_PP-OCRv4_rec_infer";
-                config.keys = modelPathroot + @"\ppocr_keys.txt";
+                string modelPathroot = Path.Combine(root, "inference");
+                config.det_infer = Path.Combine(modelPathroot, "ch_PP-OCRv4_det_infer");
+                config.cls_infer = Path.Combine(modelPathroot, "ch_ppocr_mobile_v2.0_cls_infer");
+                config.rec_infer = Path.Combine(modelPathroot, "ch_PP-OCRv4_rec_infer");
+                config.keys = Path.Combine(modelPathroot, "ppocr_keys.txt");
             }
             if (string.IsNullOrEmpty(parameterjson))
             {

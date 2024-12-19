@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using PaddleOCRCore;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -39,13 +40,18 @@ namespace WinFormsApp
         {
             try
             {
+                message = new StringBuilder();
                 string result = "";
-                message=new StringBuilder();
                 OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
                 OpenFileDialog1.Filter = "所有文件(*.jpg)|*.*|jpg(*.jpg)|*.png|png(*.png)|*.png|bmp(*.bmp)|*.bmp|jpeg(*.jpeg)|*.jpeg";
                 OpenFileDialog1.Multiselect = false;
                 if (DialogResult.OK == OpenFileDialog1.ShowDialog())
                 {
+                    var stopwatch = new Stopwatch();
+                    var startTime = DateTime.Now;
+                    message.Append($"开始时间: {startTime:yyyy-MM-dd HH:mm:ss.fff}");
+                    message.Append(Environment.NewLine);
+                    stopwatch.Start();
                     string filePath = OpenFileDialog1.FileName;
                     //string filePath = Path.Combine(AppContext.BaseDirectory, "inference", "1231.jpeg");
                     //message.Append(filePath);
@@ -100,10 +106,6 @@ namespace WinFormsApp
                             };
                             result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
                         }
-                        else
-                        {
-                            message.Append("正则表达式匹配失败\r\n");
-                        }
                     }
                     else if (id_card_side.Equals("back"))
                     {
@@ -132,16 +134,19 @@ namespace WinFormsApp
                             };
                             result = JsonConvert.SerializeObject(jsonResult, Formatting.Indented);
                         }
-                        else
-                        {
-                            message.Append("正则表达式匹配失败\r\n");
-                        }
                     }
                     message.Append(result);
-                    //message.Insert(0, $"识别结果{ocrResult.TextBlocks.Count()}行：\r\n");
-                    textBoxResult.Text = message.ToString();
+                    message.Append(Environment.NewLine);
+                    stopwatch.Stop();
+                    var endTime = DateTime.Now;
+                    message.Append($"结束时间: {endTime:yyyy-MM-dd HH:mm:ss.fff}");
+                    message.Append(Environment.NewLine);
+                    message.Append($"总用时: {stopwatch.ElapsedMilliseconds} 毫秒");
+                    message.Append(Environment.NewLine);
+                    message.Append($"输出json: {ocrResult.JsonText}");
                 }
                 OpenFileDialog1.Dispose();
+                textBoxResult.Text = message.ToString();
             }
             catch (Exception ex)
             {

@@ -10,10 +10,10 @@ namespace OCRCoreService.Services
         public PaddleOCREngine ocrEngine{ get; set; }
         public PaddleStructureEngine structureEngine { get; set; }
 
-        private static string det_infer = @"\ch_PP-OCRv4_det_infer";
-        private static string cls_infer = @"\ch_ppocr_mobile_v2.0_cls_infer";
-        private static string rec_infer = @"\ch_PP-OCRv4_rec_infer";
-        private static string keys = @"\ppocr_keys.txt";
+        private static string det_infer = "ch_PP-OCRv4_det_infer";
+        private static string cls_infer = "ch_ppocr_mobile_v2.0_cls_infer";
+        private static string rec_infer = "ch_PP-OCRv4_rec_infer";
+        private static string keys = "ppocr_keys.txt";
         private static bool use_gpu = false;
         /// <summary>
         /// 
@@ -32,30 +32,11 @@ namespace OCRCoreService.Services
             //自带轻量版中英文模型V4模型
             OCRModelConfig config = new OCRModelConfig();
             string root = PaddleOCRCore.EngineBase.GetRootDirectory();
-            string modelPathroot = root + @"\inference";
-            config.det_infer = modelPathroot + det_infer;
-            config.cls_infer = modelPathroot + cls_infer;
-            config.rec_infer = modelPathroot + rec_infer;
-            config.keys = modelPathroot + keys;
-
-            //服务器中英文模型
-            //OCRModelConfig config = new OCRModelConfig();
-            //string root = PaddleOCRCore.EngineBase.GetRootDirectory();
-            //string modelPathroot = root + @"\inference";
-            //config.det_infer = modelPathroot + @"\ch_PP-OCRv4_det_server_infer";
-            //config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
-            //config.rec_infer = modelPathroot + @"\ch_PP-OCRv4_rec_server_infer";
-            //config.keys = modelPathroot + @"\ppocr_keysANSI.txt";
-
-            //英文和数字模型V3
-            //OCRModelConfig config = new OCRModelConfig();
-            //string root = PaddleOCRCore.EngineBase.GetRootDirectory();
-            //string modelPathroot = root + @"\en_v3";
-            //config.det_infer = modelPathroot + @"\en_PP-OCRv3_det_infer";
-            //config.cls_infer = modelPathroot + @"\ch_ppocr_mobile_v2.0_cls_infer";
-            //config.rec_infer = modelPathroot + @"\en_PP-OCRv3_rec_infer";
-            //config.keys = modelPathroot + @"\en_dict.txt";
-            //OCR参数
+            string modelPathroot = Path.Combine(root, "inference");
+            config.det_infer = Path.Combine(modelPathroot, det_infer);
+            config.cls_infer = Path.Combine(modelPathroot, cls_infer);
+            config.rec_infer = Path.Combine(modelPathroot, rec_infer);
+            config.keys = Path.Combine(modelPathroot, keys);
 
             OCRParameter oCRParameter = new OCRParameter();
             oCRParameter.use_gpu = use_gpu;
@@ -85,13 +66,13 @@ namespace OCRCoreService.Services
             //自带轻量版中英文模型V4模型
             StructureModelConfig config = new StructureModelConfig();
             string root = PaddleOCRCore.EngineBase.GetRootDirectory();
-            string modelPathroot = root + @"\inference";
-            config.det_infer = modelPathroot + det_infer;
-            config.cls_infer = modelPathroot + cls_infer;
-            config.rec_infer = modelPathroot + rec_infer;
-            config.keys = modelPathroot + keys;
-            config.table_model_dir = modelPathroot + @"\ch_ppstructure_mobile_v2.0_SLANet_infer";
-            config.table_char_dict_path = modelPathroot + @"\table_structure_dict_ch.txt";
+            string modelPathroot = Path.Combine(root, "inference");
+            config.det_infer = Path.Combine(modelPathroot, det_infer);
+            config.cls_infer = Path.Combine(modelPathroot, cls_infer);
+            config.rec_infer = Path.Combine(modelPathroot, rec_infer);
+            config.keys = Path.Combine(modelPathroot, keys);
+            config.table_model_dir = Path.Combine(modelPathroot, "ch_ppstructure_mobile_v2.0_SLANet_infer");
+            config.table_char_dict_path = Path.Combine(modelPathroot, "table_structure_dict_ch.txt");
 
             StructureParameter oCRParameter = new StructureParameter();
             oCRParameter.use_gpu = use_gpu;
